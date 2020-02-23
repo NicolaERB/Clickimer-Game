@@ -1,0 +1,113 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<title></title>
+
+ 	<style type="text/css">
+ 		.circle{
+
+ 			background: red;
+ 			width: 50px;
+ 			height: 50px;
+ 			border-radius: 25px;
+ 			position: absolute;
+ 			
+ 		}
+ 	</style>
+ </head>
+ <body>
+
+ 	<div>
+ 		<center>
+ 		<h2 style="color: red;">
+ 			Clickimer Game
+ 		</h2>
+ 		</center>
+ 	</div>
+ <center>
+ 	<div id="score" style="font-size: 20px;">
+
+ 		0
+
+ 	</div></center>
+ 	<div id="game" style="width: 600px; height: 600px; background: grey; margin: 0 auto;">
+ 
+
+ 		
+ 	</div>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ 	<script type="text/javascript">
+ 		var area= document.getElementById("game");
+
+ 		var gameSize= 600;
+
+ 		var limit= 5;
+ 		var count= 0;
+ 		var score= 0;
+
+ 		var gameOver= false;
+
+ 		var offsetx= $(area).offset().left;
+ 		var offsety= $(area).offset().top;
+
+
+
+ 		setInterval(function(){
+
+
+ 			if(gameOver==false){
+
+	 			if(count < limit){
+
+			 			var circleobj = document.createElement("div");
+
+			 			var x = getRandomInt(0, 550);
+			 			var y = getRandomInt(0, 550);
+
+			 			$(circleobj).addClass("circle");
+			 			$(circleobj).css("left", x + offsetx);
+			 			$(circleobj).css("top", y + offsety);
+
+			 			$(circleobj).click(function(){
+
+			 				if(gameOver != true){
+				 				$(this).remove();
+				 				count= count-1;
+				 				score= score+1;
+				 				$("#score").html(score);
+			 				}
+
+			 			})
+
+
+			 			$('#game').append(circleobj);
+			 			count= count+ 1;
+
+
+	 			} else {
+	 				gameOver= true;
+
+	 				$("#score").text("game over");
+
+
+	 			}
+
+
+			} 
+
+
+
+
+
+ 		}, 1000)
+
+ 		function getRandomInt(min, max){
+
+ 			return Math.floor(Math.random() * (max-min+1)) +min;
+ 		}
+
+
+ 	</script>
+ 
+ </body>
+ </html>
